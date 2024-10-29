@@ -1,0 +1,10 @@
+server:
+  port: 8080
+
+socket:
+  #socket 认证后缓存key生成策略   #ipAndPort IP加端口 #ipAndEqpId IP加设备ID
+  key-generation-strategy: ipAndEqpId
+  port: 10008
+  heartbeat-detection-interval: 1 #心跳检测间隔时间 单位分钟
+  heartbeat-timeout: 3 #心跳超时时间 单位分钟
+
