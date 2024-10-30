@@ -42,6 +42,7 @@ public class SocketControllerTest {
         socketMetBeanCountMap.put(sessionId, new SocketMetBean(
                 socket,writer,reader
         ));
+        responseVO.getHeader().setDate(new Date());
         responseVO.getResult().setMessageCh("认证成功");
         return responseVO;
     }

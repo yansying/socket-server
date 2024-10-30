@@ -42,7 +42,7 @@ import java.util.concurrent.ConcurrentMap;
 
 public class SocketServer {
 
-    private final ThreadPoolTaskExecutor threadPoolTaskExecutor;
+    private final ThreadPoolTaskExecutor socketThreadPool;
     private final Validator validator;
     private final SocketConfigProperties socketConfigProperties;
     private final SocketMessageInterceptor socketMessageInterceptor;
@@ -92,7 +92,7 @@ public class SocketServer {
                     try {
                         Socket clientSocket = serverSocket.accept();
                         log.info("客户端已连接: {}:{}", clientSocket.getInetAddress().getHostAddress(), clientSocket.getPort());
-                        threadPoolTaskExecutor.execute(new ClientHandler(clientSocket));
+                        socketThreadPool.execute(new ClientHandler(clientSocket));
                     } catch (IOException e) {
                         if (running) {
                             log.error("客户端异常断开: {}", e.getMessage());
@@ -197,17 +197,6 @@ public class SocketServer {
                                 }
                             }
                             continue;
-//                            Method[] declaredMethods = messageBean.getClass().getDeclaredMethods();
-//                            Object authenticationFailureMessage = null;
-//                            for (Method declaredMethod : declaredMethods) {
-//                                if (declaredMethod.isAnnotationPresent(AuthenticationFailure.class)) {
-//                                    authenticationFailureMessage  = declaredMethod.invoke(messageBean, messageBean);
-//                                    break;
-//                                }
-//                            }
-//                            Object serialize = socketMessageInterceptor.serialize(authenticationFailureMessage);
-//                            writer.println((String) serialize);
-//                            continue;
                         }
 
 

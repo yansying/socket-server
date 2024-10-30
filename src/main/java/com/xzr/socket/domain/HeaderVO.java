@@ -2,6 +2,7 @@ package com.xzr.socket.domain;
 
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xzr.socket.ano.SocketUrl;
 import com.xzr.socket.validation.MultiRule;
 import com.xzr.socket.validation.ValidationRule;
@@ -20,6 +21,7 @@ import java.util.Date;
 public class HeaderVO  {
     // 日期时间
     @NotNull(message = "日期时间不能为空")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date date;
     // 命令ID
     @NotBlank(message = "命令ID不能为空")
